@@ -89,23 +89,26 @@ func (q *Queue) Len() int {
 
 func main()  {
   q := CreateQueue(3)
-
   q.Pop()
-  q.Push(1)
-  q.Push(2)
-  q.Push(3)
-  q.Push(4)
-  fmt.Println("GetQueue", q.GetQueue(), q.Len())
-  fmt.Println("Pop", q.Pop(), "Queue", q.GetQueue())
-  fmt.Println("Pop", q.Pop(), "Queue", q.GetQueue())
-  q.Push(5)
-  fmt.Println("GetQueue", q.GetQueue())
-  q.Push(6)
-  fmt.Println("GetQueue", q.GetQueue())
-  fmt.Println("Pop", q.Pop(), "Queue", q.GetQueue())
-  fmt.Println("Pop", q.Pop(), "Queue", q.GetQueue())
-  fmt.Println("Pop", q.Pop(), "Queue", q.GetQueue())
-  fmt.Println("Pop", q.Pop(), "Queue", q.GetQueue())
+  fmt.Println("Push 1", q.Push(1), "Queue", q, "Length", q.Len(), "GetQueue", q.GetQueue())
+  fmt.Println("Push 2", q.Push(2), "Queue", q, "Length", q.Len(), "GetQueue", q.GetQueue())
+  fmt.Println("Queue", q, "Length", q.Len(), "GetQueue", q.GetQueue())
+  fmt.Println("Push 3", q.Push(3), "Queue", q, "Length", q.Len(), "GetQueue", q.GetQueue())
+  fmt.Println("Queue", q, "Length", q.Len(), "GetQueue", q.GetQueue())
+  fmt.Println("Pop:", q.Pop(), "Queue", q, "GetQueue", q.GetQueue())
+  fmt.Println("Pop:", q.Pop(), "Queue", q, "GetQueue", q.GetQueue())
+
+  fmt.Println("Push 4", q.Push(4), "Queue", q, "Length", q.Len(), "GetQueue", q.GetQueue())
+  fmt.Println("Pop:", q.Pop(), "Queue", q, "GetQueue", q.GetQueue())
+
+  fmt.Println("Push 5", q.Push(5), "Queue", q, "Length", q.Len(), "GetQueue", q.GetQueue())
+
+  fmt.Println("Pop:", q.Pop(), "Queue", q, "GetQueue", q.GetQueue())
+
+  fmt.Println("Push 7", q.Push(7), "Queue", q, "Length", q.Len(), "GetQueue", q.GetQueue())
+
+  fmt.Println("Push 8", q.Push(8), "Queue", q, "Length", q.Len(), "GetQueue", q.GetQueue())
+
 
   fmt.Println("end")
 }
