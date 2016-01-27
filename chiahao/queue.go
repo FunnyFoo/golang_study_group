@@ -61,11 +61,10 @@ func (q *Queue) Push(v int) bool {
 
 func (q *Queue) Reform() *Queue  {
   var i int
-  length := q.end - q.front
+  length := q.Len()
 
   for i=0;i<length;i++ {
     q.arr[i] = q.arr[q.front + 1 + i]
-    fmt.Println(q.arr)
   }
 
   q.front = -1
