@@ -10,7 +10,7 @@ type Queue struct {
   end int
 }
 
-func createQueue(length int) *Queue{
+func CreateQueue(length int) *Queue{
   q := new (Queue)
   q.arr = make([]int, length)
   q.front = -1
@@ -25,33 +25,33 @@ func createQueue(length int) *Queue{
   return q
 }
 
-func (q *Queue) pop() int {
+func (q *Queue) Pop() int {
 
   if q.front == q.end {
     fmt.Println("The queue is empty.")
     return -1
   }
 
-  // pop
+  // Pop
   q.front++
   return q.arr[q.front]
 
 }
 
-func (q *Queue) push(v int) bool {
+func (q *Queue) Push(v int) bool {
 
   if (q.end-q.front) == len(q.arr) {
     fmt.Println("The queue is full.")
     return false
   }
 
-  // reform condition
+  // Reform condition
   if q.end == (len(q.arr) -1) {
-    fmt.Println("Do reform")
-    q.reform()
+    fmt.Println("Do Reform")
+    q.Reform()
   }
 
-  // push data
+  // Push data
   q.end++
   q.arr[q.end] = v
 
@@ -59,7 +59,7 @@ func (q *Queue) push(v int) bool {
 
 }
 
-func (q *Queue) reform() *Queue  {
+func (q *Queue) Reform() *Queue  {
   var i int
   length := q.end - q.front
 
@@ -75,25 +75,38 @@ func (q *Queue) reform() *Queue  {
 
 }
 
-func main()  {
-  q := createQueue(3)
+func (q *Queue) GetQueue() []int {
+  if(q.front == q.end) {
+    return make([]int, 0)
+  }
 
-  q.pop()
-  q.push(1)
-  q.push(2)
-  q.push(3)
-  q.push(4)
-  fmt.Println("Queue", q)
-  fmt.Println("Pop", q.pop(), "Queue", q)
-  fmt.Println("Pop", q.pop(), "Queue", q)
-  q.push(5)
-  fmt.Println("Queue", q)
-  q.push(6)
-  fmt.Println("Queue", q)
-  fmt.Println("Pop", q.pop(), "Queue", q)
-  fmt.Println("Pop", q.pop(), "Queue", q)
-  fmt.Println("Pop", q.pop(), "Queue", q)
-  fmt.Println("Pop", q.pop(), "Queue", q)
+  // slice[a:b], mean a ~ b-1
+  return q.arr[q.front+1:q.end+1]
+}
+
+func (q *Queue) Len() int {
+  return q.end - q.front
+}
+
+func main()  {
+  q := CreateQueue(3)
+
+  q.Pop()
+  q.Push(1)
+  q.Push(2)
+  q.Push(3)
+  q.Push(4)
+  fmt.Println("GetQueue", q.GetQueue(), q.Len())
+  fmt.Println("Pop", q.Pop(), "Queue", q.GetQueue())
+  fmt.Println("Pop", q.Pop(), "Queue", q.GetQueue())
+  q.Push(5)
+  fmt.Println("GetQueue", q.GetQueue())
+  q.Push(6)
+  fmt.Println("GetQueue", q.GetQueue())
+  fmt.Println("Pop", q.Pop(), "Queue", q.GetQueue())
+  fmt.Println("Pop", q.Pop(), "Queue", q.GetQueue())
+  fmt.Println("Pop", q.Pop(), "Queue", q.GetQueue())
+  fmt.Println("Pop", q.Pop(), "Queue", q.GetQueue())
 
   fmt.Println("end")
 }
