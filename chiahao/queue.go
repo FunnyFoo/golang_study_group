@@ -92,9 +92,8 @@ func main()  {
   q.Pop()
   fmt.Println("Push 1", q.Push(1), "Queue", q, "Length", q.Len(), "GetQueue", q.GetQueue())
   fmt.Println("Push 2", q.Push(2), "Queue", q, "Length", q.Len(), "GetQueue", q.GetQueue())
-  fmt.Println("Queue", q, "Length", q.Len(), "GetQueue", q.GetQueue())
   fmt.Println("Push 3", q.Push(3), "Queue", q, "Length", q.Len(), "GetQueue", q.GetQueue())
-  fmt.Println("Queue", q, "Length", q.Len(), "GetQueue", q.GetQueue())
+
   fmt.Println("Pop:", q.Pop(), "Queue", q, "GetQueue", q.GetQueue())
   fmt.Println("Pop:", q.Pop(), "Queue", q, "GetQueue", q.GetQueue())
 
