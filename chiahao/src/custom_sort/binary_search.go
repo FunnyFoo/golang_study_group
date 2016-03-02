@@ -1,7 +1,7 @@
-package main
+package custom_sort
 
 import (
-  . "fmt"
+  // . "fmt"
 )
 
 func BSearch(target int, arr []int, bot int, top int) (int, bool) {
@@ -20,9 +20,9 @@ func BSearch(target int, arr []int, bot int, top int) (int, bool) {
   }
 }
 
-func main() {
-  arr := []int{1, 2, 3, 4, 4, 4, 4, 5, 10, 100, 101, 105, 120, 140}
-  index, exist := BSearch(100, arr, 0, len(arr)-1)
-  Println(arr)
-  Println("isExist = ", exist, "index = ", index)
-}
+// func main() {
+//   arr := []int{1, 2, 3, 4, 4, 4, 4, 5, 10, 100, 101, 105, 120, 140}
+//   index, exist := BSearch(100, arr, 0, len(arr)-1)
+//   Println(arr)
+//   Println("isExist = ", exist, "index = ", index)
+// }
