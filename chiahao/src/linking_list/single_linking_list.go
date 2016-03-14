@@ -2,6 +2,7 @@ package main
 
 import (
   . "fmt"
+  "reflect"
 )
 
 type SinglyLinkedList struct {
@@ -15,6 +16,17 @@ type Node struct {
   next *Node
 }
 
+// Other methods
+func clear(v interface{}) {
+  p := reflect.ValueOf(v).Elem()
+  p.Set(reflect.Zero(p.Type()))
+}
+
+// Node methods
+func (node *Node) Reset() {
+  clear(node)
+}
+
 // List methods
 func New() *SinglyLinkedList {
   l := new(SinglyLinkedList)
@@ -24,7 +36,7 @@ func New() *SinglyLinkedList {
   return l
 }
 
-func (l *SinglyLinkedList) Add(data int) {
+func (l *SinglyLinkedList) Add(data int) *Node {
   node := new(Node)
   node.data = data
   node.next = nil
@@ -37,18 +49,48 @@ func (l *SinglyLinkedList) Add(data int) {
     l.tail = node
   }
   l.len++
+
+  return node
 }
 
 func (l *SinglyLinkedList) InsertAfter(v int, markNode *Node) *Node {
   return nil
 }
 
-func (l *SinglyLinkedList) Remove() {
+func (l *SinglyLinkedList) Remove(node *Node) {
+  current := l.head
+  previous := l.head
+
+  for current != nil {
+    if current == node {
+      switch {
+      case node == l.head:
+        l.head = l.head.next
+      case node == l.tail:
+        l.tail = previous
+        l.tail.next = nil
+      default:
+        previous.next = current.next
+      }
+      l.len--
+    }
+
+    previous = current
+    current = current.next
+
+  }
+
+  // free memory
+  node.Reset()
 
 }
 
-func (l *SinglyLinkedList) Len() {
+func (l *SinglyLinkedList) RemoveFromData(data int) {
 
+}
+
+func (l *SinglyLinkedList) Len() int {
+  return l.len
 }
 
 func (l *SinglyLinkedList) Print() {
@@ -69,8 +111,13 @@ func (l *SinglyLinkedList) Print() {
 func main() {
   var l = new(SinglyLinkedList)
   l.Print()
-  l.Add(1)
-  l.Add(2)
-  l.Add(3)
+  one := l.Add(1)
+  two := l.Add(2)
+  three := l.Add(3)
+  l.Print()
+  Println(one, two, three)
+  l.Remove(three)
+  l.Print()
+  l.Remove(two)
   l.Print()
 }
