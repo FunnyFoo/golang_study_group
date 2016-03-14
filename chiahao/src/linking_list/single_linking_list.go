@@ -5,6 +5,7 @@ import (
   "reflect"
 )
 
+// struct define
 type SinglyLinkedList struct {
   head *Node
   tail *Node
@@ -15,6 +16,9 @@ type Node struct {
   data int
   next *Node
 }
+
+// func define
+type Callback func(*Node)
 
 // Other methods
 func clear(v interface{}) {
@@ -34,6 +38,15 @@ func New() *SinglyLinkedList {
   l.tail = nil
   l.len = 0
   return l
+}
+
+func (l *SinglyLinkedList) Traverse(cb Callback) {
+  current := l.head
+
+  for current != nil {
+    cb(current)
+    current = current.next
+  }
 }
 
 func (l *SinglyLinkedList) Add(data int) *Node {
@@ -82,11 +95,26 @@ func (l *SinglyLinkedList) Remove(node *Node) {
 
   // free memory
   node.Reset()
-
+  node = nil
 }
 
 func (l *SinglyLinkedList) RemoveFromData(data int) {
+  searchResults := l.Search(data)
+  for i:=0;i<len(searchResults);i++ {
+    l.Remove(searchResults[i])
+  }
+}
 
+func (l *SinglyLinkedList) Search(data int) []*Node {
+  results := make([]*Node, 0) // results := []*Node{}
+
+  l.Traverse(func(current *Node) {
+    if(current.data == data) {
+      results = append(results, current)
+    }
+  })
+
+  return results
 }
 
 func (l *SinglyLinkedList) Len() int {
@@ -95,15 +123,10 @@ func (l *SinglyLinkedList) Len() int {
 
 func (l *SinglyLinkedList) Print() {
   arr := make([]int, 0)
-  current := l.head
-  for {
-    if current == nil {
-      break
-    } else {
-      arr = append(arr, current.data)
-    }
-    current = current.next
-  }
+
+  l.Traverse(func(current *Node) {
+    arr = append(arr, current.data)
+  })
 
   Println(arr)
 }
@@ -113,11 +136,16 @@ func main() {
   l.Print()
   one := l.Add(1)
   two := l.Add(2)
+  l.Add(2)
   three := l.Add(3)
+  l.Add(2)
+  l.Add(2)
   l.Print()
   Println(one, two, three)
   l.Remove(three)
   l.Print()
   l.Remove(two)
+  l.Print()
+  l.RemoveFromData(2)
   l.Print()
 }
