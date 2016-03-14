@@ -86,6 +86,19 @@ func (l *SinglyLinkedList) InsertAfter(data int, markNode *Node) *Node {
   return node
 }
 
+func (l *SinglyLinkedList) InsertAfterFromData(data int, markData int) []*Node {
+
+  markNodes := l.Search(markData)
+  results := make([]*Node, 0)
+
+  for _, node := range markNodes {
+    insertNode := l.InsertAfter(data, node)
+    results = append(results, insertNode)
+  }
+
+  return results
+}
+
 func (l *SinglyLinkedList) Remove(node *Node) {
   current := l.head
   previous := l.head
@@ -116,8 +129,9 @@ func (l *SinglyLinkedList) Remove(node *Node) {
 
 func (l *SinglyLinkedList) RemoveFromData(data int) {
   searchResults := l.Search(data)
-  for i:=0;i<len(searchResults);i++ {
-    l.Remove(searchResults[i])
+
+  for _, node := range searchResults {
+    l.Remove(node)
   }
 }
 
@@ -159,15 +173,15 @@ func main() {
   l.Print()
   l.Remove(three)
   l.Print()
-  l.Remove(two)
-  l.Print()
   l.RemoveFromData(2)
   l.Print()
   four := l.Add(4)
   two = l.Add(2)
+  l.Add(2)
+  l.Add(2)
   l.Print()
   Println(l.Len())
-  l.InsertAfter(9, two)
+  l.InsertAfterFromData(9, 2)
   l.Print()
 
   Println(one, two, three, four)
