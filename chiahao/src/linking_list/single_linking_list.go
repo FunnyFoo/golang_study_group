@@ -66,8 +66,24 @@ func (l *SinglyLinkedList) Add(data int) *Node {
   return node
 }
 
-func (l *SinglyLinkedList) InsertAfter(v int, markNode *Node) *Node {
-  return nil
+func (l *SinglyLinkedList) InsertAfter(data int, markNode *Node) *Node {
+
+  node := new(Node)
+  node.data = data
+
+  if markNode != nil {
+    if markNode == l.tail {
+      markNode.next = node
+      node.next = nil
+      l.tail = node
+    } else {
+      node.next = markNode.next
+      markNode.next = node
+    }
+    l.len++
+  }
+
+  return node
 }
 
 func (l *SinglyLinkedList) Remove(node *Node) {
@@ -141,11 +157,18 @@ func main() {
   l.Add(2)
   l.Add(2)
   l.Print()
-  Println(one, two, three)
   l.Remove(three)
   l.Print()
   l.Remove(two)
   l.Print()
   l.RemoveFromData(2)
   l.Print()
+  four := l.Add(4)
+  two = l.Add(2)
+  l.Print()
+  Println(l.Len())
+  l.InsertAfter(9, two)
+  l.Print()
+
+  Println(one, two, three, four)
 }
