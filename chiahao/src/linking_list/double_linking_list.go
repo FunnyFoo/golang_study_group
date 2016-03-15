@@ -1,4 +1,4 @@
-package main
+package custom_list
 
 import (
   . "fmt"
@@ -197,25 +197,25 @@ func (l *DoublyLinkedList) Print() {
   Println(arr)
 }
 
-func main() {
-  var l = new(DoublyLinkedList)
-  one := l.Add(1)
-  two := l.Add(2)
-  l.Add(2)
-  l.Add(2)
-  l.Add(2)
-  l.Add(2)
-  three := l.Add(3)
-  l.Add(2)
-  l.Print()
-  l.Remove(three)
-  l.Print()
-  // l.RemoveFromData(2)
-  l.Print()
-  ten := l.InsertAfter(10, one)
-  l.InsertBeforeFromData(999, 2)
-  l.Print()
-
-  Println(l)
-  Println(one, two, three, ten)
-}
+// func main() {
+//   var l = new(DoublyLinkedList)
+//   one := l.Add(1)
+//   two := l.Add(2)
+//   l.Add(2)
+//   l.Add(2)
+//   l.Add(2)
+//   l.Add(2)
+//   three := l.Add(3)
+//   l.Add(2)
+//   l.Print()
+//   l.Remove(three)
+//   l.Print()
+//   // l.RemoveFromData(2)
+//   l.Print()
+//   ten := l.InsertAfter(10, one)
+//   l.InsertBeforeFromData(999, 2)
+//   l.Print()
+//
+//   Println(l)
+//   Println(one, two, three, ten)
+// }
