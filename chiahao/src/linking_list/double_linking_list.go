@@ -76,11 +76,14 @@ func (l *DoublyLinkedList) InsertAfter(data int, markNode *Node) *Node {
 
   if markNode != nil {
     if markNode == l.tail {
-      markNode.next = node
       node.next = nil
+      node.prev = markNode
       l.tail = node
+      markNode.next = node
     } else {
       node.next = markNode.next
+      node.prev = markNode
+      markNode.next.prev = node
       markNode.next = node
     }
     l.len++
