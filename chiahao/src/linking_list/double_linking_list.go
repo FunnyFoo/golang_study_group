@@ -105,6 +105,40 @@ func (l *DoublyLinkedList) InsertAfterFromData(data int, markData int) []*Node {
   return results
 }
 
+func (l *DoublyLinkedList) InsertBefore(data int, markNode *Node) *Node {
+  node := new(Node)
+  node.data = data
+
+  if markNode != nil {
+    if markNode == l.head {
+      node.next = markNode
+      node.prev = nil
+      l.head = node
+      markNode.prev = node
+    } else {
+      node.next = markNode
+      node.prev = markNode.prev
+      markNode.prev.next = node
+      markNode.prev = node
+    }
+    l.len++
+  }
+
+  return node
+}
+
+func (l *DoublyLinkedList) InsertBeforeFromData(data int, markData int) []*Node {
+  markNodes := l.Search(markData)
+  results := make([]*Node, 0)
+
+  for _, node := range markNodes {
+    insertNode := l.InsertBefore(data, node)
+    results = append(results, insertNode)
+  }
+
+  return results
+}
+
 func (l *DoublyLinkedList) Remove(node *Node) {
 
   l.Traverse(func(current *Node) {
@@ -179,7 +213,7 @@ func main() {
   // l.RemoveFromData(2)
   l.Print()
   ten := l.InsertAfter(10, one)
-  l.InsertAfterFromData(999, 2)
+  l.InsertBeforeFromData(999, 2)
   l.Print()
 
   Println(l)
