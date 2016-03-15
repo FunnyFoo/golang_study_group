@@ -1,4 +1,4 @@
-package main
+package custom_list
 
 import (
   . "fmt"
@@ -161,28 +161,28 @@ func (l *SinglyLinkedList) Print() {
   Println(arr)
 }
 
-func main() {
-  var l = new(SinglyLinkedList)
-  l.Print()
-  one := l.Add(1)
-  two := l.Add(2)
-  l.Add(2)
-  three := l.Add(3)
-  l.Add(2)
-  l.Add(2)
-  l.Print()
-  l.Remove(three)
-  l.Print()
-  l.RemoveFromData(2)
-  l.Print()
-  four := l.Add(4)
-  two = l.Add(2)
-  l.Add(2)
-  l.Add(2)
-  l.Print()
-  Println(l.Len())
-  l.InsertAfterFromData(9, 2)
-  l.Print()
-
-  Println(one, two, three, four)
-}
+// func main() {
+//   var l = new(SinglyLinkedList)
+//   l.Print()
+//   one := l.Add(1)
+//   two := l.Add(2)
+//   l.Add(2)
+//   three := l.Add(3)
+//   l.Add(2)
+//   l.Add(2)
+//   l.Print()
+//   l.Remove(three)
+//   l.Print()
+//   l.RemoveFromData(2)
+//   l.Print()
+//   four := l.Add(4)
+//   two = l.Add(2)
+//   l.Add(2)
+//   l.Add(2)
+//   l.Print()
+//   Println(l.Len())
+//   l.InsertAfterFromData(9, 2)
+//   l.Print()
+//
+//   Println(one, two, three, four)
+// }
