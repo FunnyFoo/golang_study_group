@@ -124,26 +124,6 @@ func (l *DoublyLinkedList) Remove(node *Node) {
     }
   })
 
-  // for current != nil {
-  //   if current == node {
-  //     switch {
-  //     case node == l.head:
-  //       l.head = l.head.next
-  //       l.head.prev = nil
-  //     case node == l.tail:
-  //       l.tail = previous
-  //       l.tail.next = nil
-  //     default:
-  //       previous.next = current.next
-  //     }
-  //     l.len--
-  //   }
-  //
-  //   previous = current
-  //   current = current.next
-  //
-  // }
-
   // free memory
   node.Reset()
   node = nil
@@ -187,11 +167,21 @@ func main() {
   var l = new(DoublyLinkedList)
   one := l.Add(1)
   two := l.Add(2)
+  l.Add(2)
+  l.Add(2)
+  l.Add(2)
+  l.Add(2)
   three := l.Add(3)
+  l.Add(2)
   l.Print()
   l.Remove(three)
   l.Print()
+  // l.RemoveFromData(2)
+  l.Print()
+  ten := l.InsertAfter(10, one)
+  l.InsertAfterFromData(999, 2)
+  l.Print()
 
   Println(l)
-  Println(one, two, three)
+  Println(one, two, three, ten)
 }
